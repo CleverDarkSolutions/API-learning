@@ -1,6 +1,6 @@
 let randomCat = document.getElementById("btn1");
 let queryCat = document.getElementById("btn2");
-let key = "?api_key=16337aa8-2f18-48c4-8633-4a10f3d61ce1";
+let key = "?api_key="; // ZAPISZCIE SIE PO KLUCZ
 
 let headers = new Headers();
 
