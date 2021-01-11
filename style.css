@@ -1,0 +1,21 @@
+img {
+    width: 20%;
+}
+
+
+#randomized{
+    position: absolute;
+    top: 15%;
+    left: 40%;
+}
+
+#btn2{
+    position: absolute;
+    left: 15%;
+}
+
+#btn1{
+    position: relative;
+    top: 70px;
+    left: -50%;
+}

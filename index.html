@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Popoga</title>
+</head>
+
+<body class="jumbotron text-center">
+    <div id="mainDiv">
+
+        <form onsubmit="return false">
+            <div class="form-group col-md-4">
+                <label for="breed">Breed:</label>
+                <input type="text" class="form-control" id="breed">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="category">Category:</label>
+                <input type="text" class="form-control" id="category">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="filetype">File type:</label>
+                <select class="form-control" id="filetype">
+                    <option value="">Any</option>
+                    <option value="">gif</option>
+                    <option value="">png</option>
+                    <option value="">jpg</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-warning" id="btn2">Submit</button>
+        </form>
+    </div>
+
+    <div class="randomized" id="randomized">
+        <h1 class="float-left" id="text1">Or go random!</h1>
+        <button id="btn1" class="btn btn-warning">Random cat</button>
+    </div>
+
+    <div class="catsImgDiv" id="catsImgDiv"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
