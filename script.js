@@ -6,11 +6,31 @@ let headers = new Headers();
 
 headers.append('x-api-key', key);
 
-randomCat.addEventListener("click", fetchPics);
+//randomCat.addEventListener("click", fetchPics);
 queryCat.addEventListener("click", fetchBreeds);
+//--------------------------------------------------------------------------------------------------------
+let textWrapper = document.querySelector('.movingLetters .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({ loop: true })
+    .add({
+        targets: '.movingLetters .letter',
+        translateY: ["1.1em", 0],
+        translateZ: 0,
+        duration: 750,
+        delay: (el, i) => 50 * i
+    }).add({
+        targets: '.movingLetters',
+        opacity: 0,
+        duration: 1000,
+        easing: "easeOutExpo",
+        delay: 1000
+    });
+//----------------------------------------------------------------------------------------------------------
 
 function fetchPics() {
     document.getElementById("catsImgDiv").innerHTML = "";
+    document.getElementById("tableForCats").innerHTML = "";
     fetch("https://api.thecatapi.com/v1/images/search", {
         method: 'GET',
         headers: headers
@@ -32,6 +52,7 @@ function fetchPics() {
 
 function fetchBreeds() {
     document.getElementById("catsImgDiv").innerHTML = "";
+    document.getElementById("tableForCats").innerHTML = "";
     let breedValue = document.getElementById("breed").value;
     let def = "https://api.thecatapi.com/v1/breeds/search?q=";
     let query = def + breedValue;
@@ -46,13 +67,14 @@ function fetchBreeds() {
 
             let table = document.createElement("table");
             table.setAttribute('class', 'table');
+            table.setAttribute('class', 'table-hover');
             table.setAttribute('id', 'table1');
             let thead = document.createElement("thead");
             table.append(thead);
             let tr = document.createElement("tr");
             thead.append(tr)
 
-            for (let i = 1; i < 6; i++) {
+            for (let i = 1; i < 7; i++) {
                 let th = document.createElement("th");
                 th.setAttribute('class', 'col' + i);
                 th.setAttribute('scope', 'col');
@@ -66,12 +88,14 @@ function fetchBreeds() {
             let col3 = document.querySelector(".col3");
             let col4 = document.querySelector(".col4");
             let col5 = document.querySelector(".col5");
+            let col6 = document.querySelector(".col6");
 
             col1.innerHTML = "#";
             col2.innerHTML = "Name";
             col3.innerHTML = "Origin";
             col4.innerHTML = "Lifespan";
-            col5.innerHTML = "Pole5";
+            col5.innerHTML = "Temperament";
+            col6.innerHTML = "Description";
 
             let tbody = document.createElement("tbody");
             table.append(tbody);
@@ -80,22 +104,26 @@ function fetchBreeds() {
                 let tr = document.createElement("tr");
                 tbody.append(tr);
                 let th = document.createElement("th");
-                th.innerHTML = i+1;
-                th.setAttribute('scope','row');
+                th.innerHTML = i + 1;
+                th.setAttribute('scope', 'row');
                 tr.append(th);
 
-                for (let j = 1; j < 5; j++) {
+                for (let j = 1; j < 6; j++) {
                     let td = document.createElement('td');
-                    td.setAttribute('class','col'+j);
+                    td.setAttribute('class', 'col' + j);
                     tr.append(td);
 
-                    if(j==1)
+                    if (j == 1)
                         td.innerHTML = data[i].name;
-                    if(j==2)
+                    if (j == 2)
                         td.innerHTML = data[i].origin;
-                    if(j==3)
+                    if (j == 3)
                         td.innerHTML = data[i].life_span;
-                    
+                    if (j == 4)
+                        td.innerHTML = data[i].temperament;
+                    if (j == 5)
+                        td.innerHTML = data[i].description;
+
                 }
 
                 console.log(data);
