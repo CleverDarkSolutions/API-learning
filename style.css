@@ -19,3 +19,27 @@ img {
     top: 70px;
     left: -50%;
 }
+
+#table1{
+    position: absolute;
+    top: 40%;
+}
+
+.col1{
+    width: 5%;
+}
+.col2{
+    width: 15%;
+}
+
+.col3{
+    width: 15%;
+}
+
+.col4{
+    width: 20%;
+}
+
+.col5{
+    width: 40%;
+}
