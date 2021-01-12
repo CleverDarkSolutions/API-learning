@@ -9,7 +9,7 @@ headers.append('x-api-key', key);
 
 queryCat.addEventListener("click", fetchBreeds);
 randomCat.addEventListener("click", fetchPics);
-categoryCat.addEventListener("click",fetchCategories);
+categoryCat.addEventListener("click", fetchCategories);
 //--------------------------------------------------------------------------------------------------------
 let textWrapper = document.querySelector('.movingLetters .letters');
 textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -33,23 +33,33 @@ anime.timeline({ loop: true })
 function fetchPics() {
     document.getElementById("catsImgDiv").innerHTML = "";
     document.getElementById("tableForCats").innerHTML = "";
-    fetch("https://api.thecatapi.com/v1/images/search", {
-        method: 'GET',
-        headers: headers
-    })
-        .then(response => response.json())
-        .then((data) => {
 
-            let catsImgUrl = data[0].url;
-            let catsImgEl = document.createElement("img");
-            catsImgEl.setAttribute('src', `${catsImgUrl}`)
+    let table = document.createElement("table");
+    table.setAttribute("class", "table");
+    catsImgDiv.append(table);
+    for (let j = 0; j < 2; j++) {
+        let tr = document.createElement("tr");
+        table.append(tr);
+        for (let i = 0; i < 5; i++) {
+            let td = document.createElement('td');
+            tr.append(td);
+            fetch("https://api.thecatapi.com/v1/images/search", {
+                method: 'GET',
+                headers: headers
+            })
+                .then(response => response.json())
+                .then((data) => {
+                    let catsImgUrl = data[0].url;
+                    let catsImgEl = document.createElement("img");
+                    catsImgEl.setAttribute('src', `${catsImgUrl}`)
 
-            let catsImgDiv = document.querySelector(".catsImgDiv");
-            catsImgDiv.appendChild(catsImgEl);
+                    td.append(catsImgEl);
 
-            console.log(data);
-        })
-        .catch(err => console.log(err))
+                    console.log(data);
+                })
+                .catch(err => console.log(err))
+        }
+    }
 }
 
 function fetchBreeds() {
@@ -147,22 +157,33 @@ function fetchCategories() {
     let query = def + categoryValue;
     console.log(query);
 
-    fetch(query, {
-        method: 'GET',
-        headers: headers
-    })
-        .then(response => response.json())
-        .then((data) => {
+    let table = document.createElement("table");
+    table.setAttribute("class", "table");
+    catsImgDiv.append(table);
 
-            let catsImgUrl = data[0].url;
-            let catsImgEl = document.createElement("img");
-            catsImgEl.setAttribute('src', `${catsImgUrl}`)
+    for (let j = 0; j < 2; j++) {
+        let tr = document.createElement("tr");
+        table.append(tr);
+        for (let i = 0; i < 5; i++) {
+            let td = document.createElement('td');
+            tr.append(td);
+            fetch(query, {
+                method: 'GET',
+                headers: headers
+            })
+                .then(response => response.json())
+                .then((data) => {
 
-            let catsImgDiv = document.querySelector(".catsImgDiv");
-            catsImgDiv.appendChild(catsImgEl); 
+                    let catsImgUrl = data[0].url;
+                    let catsImgEl = document.createElement("img");
+                    catsImgEl.setAttribute('src', `${catsImgUrl}`)
 
-            console.log(data);
+                    td.append(catsImgEl);
 
-        })
-        .catch(err => console.log(err))
+                    console.log(data);
+
+                })
+                .catch(err => console.log(err))
+        }
+    }
 }
