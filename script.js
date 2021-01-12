@@ -1,13 +1,15 @@
 let randomCat = document.getElementById("btn1");
 let queryCat = document.getElementById("btn2");
+let categoryCat = document.getElementById("btn3");
 let key = "?api_key=16337aa8-2f18-48c4-8633-4a10f3d61ce1";
 
 let headers = new Headers();
 
 headers.append('x-api-key', key);
 
-//randomCat.addEventListener("click", fetchPics);
 queryCat.addEventListener("click", fetchBreeds);
+randomCat.addEventListener("click", fetchPics);
+categoryCat.addEventListener("click",fetchCategories);
 //--------------------------------------------------------------------------------------------------------
 let textWrapper = document.querySelector('.movingLetters .letters');
 textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -139,6 +141,7 @@ function fetchBreeds() {
 
 function fetchCategories() {
     document.getElementById("catsImgDiv").innerHTML = "";
+    document.getElementById("tableForCats").innerHTML = "";
     let categoryValue = document.getElementById("category").value;
     let def = "https://api.thecatapi.com/v1/images/search?category_ids=";
     let query = def + categoryValue;
@@ -151,7 +154,12 @@ function fetchCategories() {
         .then(response => response.json())
         .then((data) => {
 
+            let catsImgUrl = data[0].url;
+            let catsImgEl = document.createElement("img");
+            catsImgEl.setAttribute('src', `${catsImgUrl}`)
 
+            let catsImgDiv = document.querySelector(".catsImgDiv");
+            catsImgDiv.appendChild(catsImgEl); 
 
             console.log(data);
 

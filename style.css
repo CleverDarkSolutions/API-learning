@@ -26,12 +26,11 @@ img {
     margin: auto;
 }
 
-#btn1{
-    position: absolute;
-    top: 10vh;
-    left: 5vw;
-    
+.catsImgDiv{
+    position: relative;
+    top: 20%;
 }
+
 
 #table1{
     position: absolute;
